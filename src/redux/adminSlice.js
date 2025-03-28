@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5000/api/admin';
+// const baseURL = 'http://localhost:5000/api/admin';
+const baseURL = "https://treatline-vha-backend.vercel.app/api/admin"
 
 export const adminLogin = createAsyncThunk(
     'admin/login',
