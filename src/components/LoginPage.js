@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { adminLogin } from '../redux/adminSlice';
+import logo from '../logo1.png';  // Updated import path
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -25,7 +26,13 @@ const LoginPage = () => {
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit}>
-                <h2>Login</h2>
+                <div className="login-brand">
+                    <div className="login-logo">
+                        <img src={logo} alt="TreatLine Logo" />
+                    </div>
+                    <h1>TreatLine</h1>
+                </div>
+                <h2>Admin Login</h2>
                 {error && <p className="error">{error?.error}</p>}
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
