@@ -9,24 +9,21 @@ import './Dashboard.css';
 const Dashboard = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { unverifiedDoctors, verifiedDoctors, doctor, loading, error } = useSelector((state) => state.admin);
+    const { unverifiedDoctors, verifiedDoctors, doctor, loading, error , token } = useSelector((state) => state.admin);
     const [view, setView] = useState('unverifiedDoctors');
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        
         if (!token) {
             navigate('/login');
         }
-    }, [navigate]);
+    }, []);
 
     useEffect(() => {
         if (view === 'unverifiedDoctors') {
             dispatch(getUnverifiedDoctors());
         } else if (view === 'verifiedDoctors') {
             dispatch(getVerifiedDoctors());
-        } else if (view === 'logout') {
-            localStorage.removeItem('token');
-            navigate('/login');
         }
     }, [dispatch, view, navigate]);
 

@@ -1,7 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../redux/adminSlice';
 import './Sidebar.css';
 
 const Sidebar = ({ setToView }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/login');
+    };
+
     return (
         <aside className="sidebar">
             <h2>Admin Dashboard</h2>
@@ -10,7 +21,7 @@ const Sidebar = ({ setToView }) => {
                     <li><button onClick={() => setToView('unverifiedDoctors')}>Unverified Doctors</button></li>
                     <li><button onClick={() => setToView('verifiedDoctors')}>Verified Doctors</button></li>
                     <li><button onClick={() => setToView('statistics')}>Statistics</button></li>
-                    <li><button onClick={() => setToView('logout')}>Logout</button></li>
+                    <li><button onClick={handleLogout}>Logout</button></li>
                 </ul>
             </nav>
         </aside>
