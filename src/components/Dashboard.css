@@ -1,0 +1,116 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar nav ul li a, .sidebar nav ul li button {
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+}
+
+.sidebar nav ul li a:hover, .sidebar nav ul li button:hover {
+    text-decoration: underline;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.main-content h2 {
+    margin-bottom: 20px;
+}
+
+.main-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main-content table, th, td {
+    border: 1px solid #ddd;
+}
+
+.main-content th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.main-content th {
+    background-color: #f2f2f2;
+}
+
+.main-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.main-content ul li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.main-content ul li h3 {
+    margin: 0 0 10px 0;
+}
+
+.main-content ul li p {
+    margin: 5px 0;
+}
+
+.main-content ul li img {
+    display: block;
+    margin: 10px 0;
+}
+
+.main-content ul li button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.main-content ul li button:hover {
+    background-color: #0056b3;
+}
+
+.main-content button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.main-content button:hover {
+    background-color: #0056b3;
+}
