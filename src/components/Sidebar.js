@@ -15,25 +15,20 @@ const Sidebar = ({ setToView }) => {
     };
 
     return (
-        <div className="sidebar">
-            <div className="brand-container">
-                <div className="brand-logo">
-                    <img src={logo} alt="TreatLine Logo" />
-                </div>
-                <span className="brand-name">TreatLine</span>
+        <aside className="sidebar">
+            <h2>Admin Dashboard</h2>
+            <nav>
+                <ul>
+                    <li><button onClick={() => setToView('unverifiedDoctors')}>Unverified Doctors</button></li>
+                    <li><button onClick={() => setToView('verifiedDoctors')}>Verified Doctors</button></li>
+                    <li><button onClick={() => setToView('statistics')}>Statistics</button></li>
+                    <li><button onClick={handleLogout}>Logout</button></li>
+                </ul>
+            </nav>
+            <div className="sidebar-footer">
+                © 2023 TreatLine Admin
             </div>
-            <aside className="sidebar">
-                <h2>Admin Dashboard</h2>
-                <nav>
-                    <ul>
-                        <li><button onClick={() => setToView('unverifiedDoctors')}>Unverified Doctors</button></li>
-                        <li><button onClick={() => setToView('verifiedDoctors')}>Verified Doctors</button></li>
-                        <li><button onClick={() => setToView('statistics')}>Statistics</button></li>
-                        <li><button onClick={handleLogout}>Logout</button></li>
-                    </ul>
-                </nav>
-            </aside>
-        </div>
+        </aside>
     );
 };
 

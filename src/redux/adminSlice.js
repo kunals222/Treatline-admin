@@ -94,7 +94,7 @@ const adminSlice = createSlice({
         logout: (state) => {
             state.token = null;
             localStorage.removeItem('token');
-        }
+        },
     },
     extraReducers: (builder) => {
         builder

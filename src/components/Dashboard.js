@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getUnverifiedDoctors, fetchDoctorByID, getVerifiedDoctors, verifyDoctor } from '../redux/adminSlice';
 import Sidebar from './Sidebar';
-import axios from 'axios';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -11,13 +10,14 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const { unverifiedDoctors, verifiedDoctors, doctor, loading, error , token } = useSelector((state) => state.admin);
     const [view, setView] = useState('unverifiedDoctors');
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         
         if (!token) {
             navigate('/login');
         }
-    }, []);
+    }, [token, navigate]);
 
     useEffect(() => {
         if (view === 'unverifiedDoctors') {
@@ -44,6 +44,12 @@ const Dashboard = () => {
             });
     };
 
+    const filteredDoctors = (doctors) => {
+        return doctors.filter((doctor) =>
+            doctor.email.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    };
+
     return (
         <div className="dashboard-container">
             <Sidebar setToView={setView} />
@@ -51,6 +57,13 @@ const Dashboard = () => {
                 {view === 'unverifiedDoctors' && (
                     <>
                         <h2>Unverified Doctors</h2>
+                        <input
+                            type="text"
+                            placeholder="Search by email"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="search-bar"
+                        />
                         {loading && <p>Loading...</p>}
                         {error && <p className="error">{error?.message}</p>}
                         <table>
@@ -64,7 +77,7 @@ const Dashboard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {unverifiedDoctors.map((doctor) => (
+                                {filteredDoctors(unverifiedDoctors).map((doctor) => (
                                     <tr key={doctor._id}>
                                         <td>{doctor.name}</td>
                                         <td>{doctor.email}</td>
@@ -85,6 +98,13 @@ const Dashboard = () => {
                 {view === 'verifiedDoctors' && (
                     <>
                         <h2>Verified Doctors</h2>
+                        <input
+                            type="text"
+                            placeholder="Search by email"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="search-bar"
+                        />
                         {loading && <p>Loading...</p>}
                         {error && <p className="error">{error?.message}</p>}
                         <table>
@@ -97,7 +117,7 @@ const Dashboard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {verifiedDoctors.map((doctor) => (
+                                {filteredDoctors(verifiedDoctors).map((doctor) => (
                                     <tr key={doctor._id}>
                                         <td>{doctor.name}</td>
                                         <td>{doctor.email}</td>
