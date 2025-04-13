@@ -84,7 +84,7 @@ export const fetchAppointmentStatistics = createAsyncThunk(
     'admin/fetchAppointmentStatistics',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${baseURL}//fetchAllAppointments`, {
+            const response = await axios.get(`${baseURL}/fetchAllAppointments`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
