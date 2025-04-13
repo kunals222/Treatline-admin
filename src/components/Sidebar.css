@@ -5,6 +5,7 @@
     --primary-dark: #0f4c81;
     --primary-light: #3a8dff;
     --shadow-md: 0 8px 20px rgba(15, 76, 129, 0.12);
+    --transition-normal: 0.3s ease;
 }
 
 .dashboard-container {
@@ -15,16 +16,18 @@
 
 .sidebar {
     width: 250px;
-    background-color: #2c3e50;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto; /* Enable vertical scrolling for the sidebar */
     position: sticky; /* Keep the sidebar fixed while scrolling */
     top: 0; /* Stick the sidebar to the top */
     height: 100vh; /* Ensure the sidebar takes the full height of the viewport */
+    background: var(--primary-gradient);
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
 }
 
 .sidebar h2 {
@@ -47,24 +50,40 @@
 .sidebar nav ul li {
     margin-bottom: 15px;
     width: 100%;
+    padding : 0;
 }
 
 .sidebar nav ul li button {
     width: 100%;
     padding: 12px 15px;
+    background: linear-gradient(135deg, #3a8dff, #1e90ff); /* Blue gradient background */
     color: white;
-    background: transparent;
-    border: none;
+    border: none; /* Remove border */
     border-radius: 8px;
     text-align: left;
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
 }
 
 .sidebar nav ul li button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(5px);
+    background: linear-gradient(135deg, #1e90ff, #007bff); /* Darker blue gradient on hover */
+    transform: translateX(5px); /* Slight movement on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.sidebar nav ul li button:focus {
+    outline: none;
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Focus state gradient */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Focus ring */
+}
+
+.sidebar nav ul li button.active {
+    background: linear-gradient(135deg, #0056b3, #003f7f); /* Active state gradient */
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
 }
 
 @media (max-width: 768px) {
@@ -116,34 +135,6 @@
         left: 50%;
         transform: translateX(-50%);
     }
-}
-
-.sidebar nav ul li button {
-    width: 100%;
-    padding: 10px 15px;
-    background-color: #34495e;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    text-align: left;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.sidebar nav ul li button:hover {
-    background-color: #1abc9c;
-    transform: translateX(5px);
-}
-
-.sidebar nav ul li button:focus {
-    outline: none;
-    background-color: #16a085;
-}
-
-.sidebar nav ul li button.active {
-    background-color: #1abc9c;
-    font-weight: bold;
 }
 
 .sidebar-footer {
