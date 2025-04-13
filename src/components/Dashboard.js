@@ -5,6 +5,7 @@ import { getUnverifiedDoctors, fetchDoctorByID, getVerifiedDoctors, verifyDoctor
 import Sidebar from './Sidebar';
 import './Dashboard.css';
 import DoctorProfile from './DoctorProfile';
+import Statistics from './Statistics';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -138,10 +139,7 @@ const Dashboard = () => {
                     <DoctorProfile setToView={setView} previousView={previousView} />
                 )}
                 {view === 'statistics' && (
-                    <>
-                        <h2>Statistics</h2>
-                        <p>Statistics content will be displayed here.</p>
-                    </>
+                    <Statistics />
                 )}
             </main>
         </div>

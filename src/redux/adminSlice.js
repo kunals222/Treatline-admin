@@ -80,6 +80,22 @@ export const verifyDoctor = createAsyncThunk(
     }
 );
 
+export const fetchAppointmentStatistics = createAsyncThunk(
+    'admin/fetchAppointmentStatistics',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${baseURL}//fetchAllAppointments`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            return response.data; // Return all appointment data
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
 const adminSlice = createSlice({
     name: 'admin',
     initialState: {
@@ -155,6 +171,18 @@ const adminSlice = createSlice({
                 state.loading = false;
             })
             .addCase(verifyDoctor.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(fetchAppointmentStatistics.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchAppointmentStatistics.fulfilled, (state, action) => {
+                state.loading = false;
+                state.appointments = action.payload.appointments;
+            })
+            .addCase(fetchAppointmentStatistics.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });

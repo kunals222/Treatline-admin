@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../redux/adminSlice';
-import logo from '../logo1.png';
 import './Sidebar.css';
 
 const Sidebar = ({ setToView }) => {
