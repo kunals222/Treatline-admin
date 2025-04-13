@@ -1,0 +1,294 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #0f4c81 0%, #3a8dff 100%);
+    --secondary-gradient: linear-gradient(135deg, #00b4d8 0%, #00d4ff 100%);
+    --accent-gradient: linear-gradient(45deg, #00ba88 0%, #2ed573 100%);
+    --primary-dark: #0f4c81;
+    --primary-light: #3a8dff;
+    --text-secondary: #555;
+    --shadow-sm: 0 2px 8px rgba(15, 76, 129, 0.08);
+    --shadow-md: 0 8px 20px rgba(15, 76, 129, 0.12);
+    --shadow-lg: 0 16px 30px rgba(15, 76, 129, 0.16);
+    --star-filled: #f1c40f;
+    --star-empty: #dcdcdc;
+}
+
+.profile-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+}
+
+.profile-sidebar {
+    width: 250px;
+    background: var(--primary-gradient);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    height: fit-content;
+    margin: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.profile-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: var(--shadow-md);
+    border-radius: 15px;
+    margin: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 20px; /* Add spacing between the image and details */
+}
+
+.profile-image-container {
+    text-align: center;
+    margin-right: 30px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: var(--shadow-md);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.profile-basic-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-basic-details h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+
+.profile-basic-details p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.rating {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: var(--star-filled);
+}
+
+.star {
+    font-size: 1.5rem;
+    color: var(--star-empty);
+}
+
+.star.filled {
+    color: var(--star-filled);
+}
+
+.profile-details-table {
+    margin-top: 20px; /* Existing margin */
+    margin-bottom: 60px; /* Add bottom margin to create space between sections */
+}
+
+.profile-details-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.profile-details-table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-secondary);
+}
+
+.profile-details-table td:first-child {
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.certificates-section {
+    margin-top: 40px; /* Ensure there is enough space above the certificates section */
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+}
+
+.certificates-section h4 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    border-bottom: 2px solid rgba(15, 76, 129, 0.1);
+    padding-bottom: 10px;
+}
+
+.certificates-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.certificate-preview {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(15, 76, 129, 0.1);
+    text-align: center;
+}
+
+.certificate-preview:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.certificate-embed {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
+}
+
+.certificate-preview p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: var(--primary-dark);
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.action-button {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.verify-button {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+}
+
+.back-button {
+    background: transparent;
+    color: var(--primary-dark);
+    border: 2px solid var(--primary-dark);
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.back-button {
+    position: absolute; /* Position it at the top-left corner */
+    top: 0px; /* Add some space from the top */
+    left: 0px; /* Add some space from the left */
+    background: red; /* Use a gradient for the background */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Make it circular */
+    width: 40px;
+    height: 25px;
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    font-weight:bolder;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+    box-shadow: var(--shadow-lg); /* Add a larger shadow on hover */
+}
+
+.back-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.3); /* Add a focus ring */
+}
+
+@media (max-width: 1024px) {
+    .profile-content {
+        padding: 20px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-image-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .certificates-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-content {
+        padding: 15px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .certificates-container {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-content {
+        padding: 10px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .certificates-container {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-button {
+        width: 100%;
+    }
+}

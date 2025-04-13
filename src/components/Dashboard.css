@@ -122,7 +122,9 @@
 
 .main-content {
     flex-grow: 1;
-    padding: 2rem;
+    overflow-y: auto; /* Enable vertical scrolling for the right-side content */
+    padding: 20px;
+    background-color: #f9f9f9;
     transition: all 0.3s ease;
 }
 

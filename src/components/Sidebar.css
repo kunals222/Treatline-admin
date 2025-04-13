@@ -7,16 +7,24 @@
     --shadow-md: 0 8px 20px rgba(15, 76, 129, 0.12);
 }
 
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
 .sidebar {
     width: 250px;
     background-color: #2c3e50;
     color: white;
-    padding: 20px;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Enable vertical scrolling for the sidebar */
+    position: sticky; /* Keep the sidebar fixed while scrolling */
+    top: 0; /* Stick the sidebar to the top */
+    height: 100vh; /* Ensure the sidebar takes the full height of the viewport */
 }
 
 .sidebar h2 {
@@ -143,4 +151,11 @@
     font-size: 14px;
     color: #bdc3c7;
     text-align: center;
+}
+
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto; /* Enable vertical scrolling for the right-side content */
+    padding: 20px;
+    background-color: #f9f9f9;
 }

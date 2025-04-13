@@ -1,9 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Sidebar from './Sidebar';
-import './DoctorProfile.css';
+import './DoctorProfile1.css';
 
-const DoctorProfile = () => {
+const DoctorProfile = ({ setToView, previousView }) => {
     const { doctor, loading, error } = useSelector((state) => state.admin);
 
     if (loading) {
@@ -18,26 +17,83 @@ const DoctorProfile = () => {
         return <p>Doctor not found</p>;
     }
 
+    // Function to render stars based on the rating
+    const renderStars = (rating) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            stars.push(
+                <span key={i} className={i <= rating ? 'star filled' : 'star'}>
+                    ★
+                </span>
+            );
+        }
+        return stars;
+    };
+
     return (
         <div className="profile-container">
-            <Sidebar />
+            <button className="back-button" onClick={() => setToView(previousView)}>
+                ←
+            </button>
             <main className="profile-content">
+            
                 <div className="profile-header">
                     <img src={doctor.profile_image} alt={`${doctor.name}'s profile`} className="profile-image" />
-                    <div className="profile-details">
+                    <div className="profile-basic-details">
                         <h2>{doctor.name}</h2>
                         <p><strong>Email:</strong> {doctor.email}</p>
-                        <p><strong>Specialist:</strong> {doctor.specialist}</p>
-                        <p><strong>Experience:</strong> {doctor.years_of_experience} years</p>
-                        <p><strong>Phone:</strong> {doctor.phone}</p>
-                        <p><strong>Medical Registration ID:</strong> {doctor.medical_registration_id}</p>
-                        <p>
-                            <strong>Medical License:</strong>{' '}
-                            <a href={doctor.medical_license} target="_blank" rel="noopener noreferrer">
-                                View License
-                            </a>
-                        </p>
+                        <div className="rating">{renderStars(Math.round(doctor.rating))}</div>
                     </div>
+                </div>
+                <div className="profile-details-table">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><strong>Specialist:</strong></td>
+                                <td>{doctor.specialist}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Specialist Degree:</strong></td>
+                                <td>{doctor.specialistDegree}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Experience:</strong></td>
+                                <td>{doctor.years_of_experience} years</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone:</strong></td>
+                                <td>{doctor.phone}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Medical Registration ID:</strong></td>
+                                <td>{doctor.medical_registration_id}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Medical License:</strong></td>
+                                <td>
+                                    <a href={doctor.medical_license} target="_blank" rel="noopener noreferrer">
+                                        View License
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Address:</strong></td>
+                                <td>{doctor.address || 'N/A'}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Languages:</strong></td>
+                                <td>{doctor.language.join(', ')}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sponsored:</strong></td>
+                                <td>{doctor.sponsored ? 'Yes' : 'No'}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rating Count:</strong></td>
+                                <td>{doctor.rating_count - 1}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div className="certificates-section">
                     <h4>Certificates:</h4>

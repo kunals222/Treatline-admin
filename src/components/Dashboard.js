@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { getUnverifiedDoctors, fetchDoctorByID, getVerifiedDoctors, verifyDoctor } from '../redux/adminSlice';
 import Sidebar from './Sidebar';
 import './Dashboard.css';
+import DoctorProfile from './DoctorProfile';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { unverifiedDoctors, verifiedDoctors, doctor, loading, error , token } = useSelector((state) => state.admin);
+    const { unverifiedDoctors, verifiedDoctors, doctor, loading, error, token } = useSelector((state) => state.admin);
     const [view, setView] = useState('unverifiedDoctors');
     const [searchQuery, setSearchQuery] = useState('');
+    const [previousView, setPreviousView] = useState(null); // Track the previous view
+
 
     useEffect(() => {
-        
         if (!token) {
             navigate('/login');
         }
@@ -25,10 +27,11 @@ const Dashboard = () => {
         } else if (view === 'verifiedDoctors') {
             dispatch(getVerifiedDoctors());
         }
-    }, [dispatch, view, navigate]);
+    }, [dispatch, view]);
 
-    const handleViewProfile = (doctorId) => {
+    const handleViewProfile = (doctorId, currentView) => {
         dispatch(fetchDoctorByID(doctorId));
+        setPreviousView(currentView); // Set the current view as the previous view
         setView('doctorProfile');
     };
 
@@ -87,7 +90,7 @@ const Dashboard = () => {
                                             {!doctor.is_active && (
                                                 <button onClick={() => handleVerifyDoctor(doctor._id)}>Verify</button>
                                             )}
-                                            <button onClick={() => handleViewProfile(doctor._id)}>View Profile</button>
+                                            <button onClick={() => handleViewProfile(doctor._id, 'unverifiedDoctors')}>View Profile</button>
                                         </td>
                                     </tr>
                                 ))}
@@ -123,7 +126,7 @@ const Dashboard = () => {
                                         <td>{doctor.email}</td>
                                         <td>{doctor.specialist}</td>
                                         <td>
-                                            <button onClick={() => handleViewProfile(doctor._id)}>View Profile</button>
+                                            <button onClick={() => handleViewProfile(doctor._id, 'verifiedDoctors')}>View Profile</button>
                                         </td>
                                     </tr>
                                 ))}
@@ -132,25 +135,7 @@ const Dashboard = () => {
                     </>
                 )}
                 {view === 'doctorProfile' && doctor && (
-                    <>
-                        <h2>{doctor.name}</h2>
-                        <p>Email: {doctor.email}</p>
-                        <p>Specialist: {doctor.specialist}</p>
-                        <p>Experience: {doctor.years_of_experience} years</p>
-                        <p>Phone: {doctor.phone}</p>
-                        <p>Medical Registration ID: {doctor.medical_registration_id}</p>
-                        <img src={doctor.profile_image} alt={`${doctor.name}'s profile`} width="100" />
-                        <p>Medical License: <a href={doctor.medical_license} target="_blank" rel="noopener noreferrer">View License</a></p>
-                        <h4>Certificates:</h4>
-                        <ul>
-                            {doctor.certificates.map((certificate, index) => (
-                                <li key={index}>
-                                    <a href={certificate} target="_blank" rel="noopener noreferrer">View Certificate {index + 1}</a>
-                                </li>
-                            ))}
-                        </ul>
-                        <button onClick={() => setView('unverifiedDoctors')}>Back</button>
-                    </>
+                    <DoctorProfile setToView={setView} previousView={previousView} />
                 )}
                 {view === 'statistics' && (
                     <>
